@@ -66,18 +66,19 @@
       x: 5,
       y: 5
     }
+    var score = 0;
     // create an array to hold the 'world' or gameboard that we will use to represent what each box in the grid will be
     var world = [
       0,0,0,0,0,0,0,0,0,0,
       0,1,1,1,1,1,1,1,1,0,
-      0,1,1,1,1,1,1,1,1,0,
-      0,1,1,1,1,1,1,1,1,0,
-      0,1,1,1,2,1,1,1,1,0,
-      0,1,0,1,1,1,2,2,2,0,
+      0,1,0,0,1,0,0,0,1,0,
       0,1,0,1,1,1,1,1,1,0,
+      0,1,1,1,2,2,1,1,1,0,
+      0,1,0,1,2,2,0,0,2,0,
+      0,1,0,1,2,2,1,1,1,0,
       0,1,0,0,1,0,0,1,1,0,
       0,1,1,1,1,1,1,1,1,0,
-      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0
     ];
     var world_x_dimension = 10;
     var world_y_dimension = 10;
@@ -105,6 +106,9 @@
     // create the html to render pacman in the html
     function draw_pacman(){
       document.getElementById('world').innerHTML = document.getElementById('world').innerHTML + "<div class='pacman' style='top: " + pacman.y * 32 + "px; left: " + pacman.x * 32 + "px'></div>";
+    }
+    function addToScore(addThis) {
+      score += addThis;
     }
 
     function getPacmanPos(){
@@ -164,6 +168,8 @@
       }
       // remove coin at current position
       if(getWorldRel(0,0) == 1){
+        addToScore(10);
+        // console.log(score);
         setWorldAbs(getPacmanPos(),2);
       }
 
